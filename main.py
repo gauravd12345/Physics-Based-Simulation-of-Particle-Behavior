@@ -49,13 +49,14 @@ def createParticles(number, mass, v_cap, a_cap, gravity):
     return particle_list
 
 blank = createParticle(0, 0, 0, 0, 0, 0, 0, False)
-p1 = createParticle(1, x - 100, y, 0, 0, 0, 0, False)
-p1.addForce(0, 0, -10)
+#p1 = createParticle(1, x - 100, y, 0, 0, 0, 0, False)
+#p1.addForce(90, 0, 20)
 
-#pList = createParticles(1, 1, 1, 1, False)
+pList = createParticles(1, 1, 20, 0, False)
 
 while running:
-    p1.move(blank)
+    for p in pList:
+        p.move(blank)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -63,7 +64,8 @@ while running:
     
     win.fill(BLACK)
 
-    pygame.draw.circle(win, WHITE, (p1.getX(), p1.getY()), p1.getR())
+    for p in pList:
+        pygame.draw.circle(win, WHITE, (p.getX(), p.getY()), p.getR())
     
 
     pygame.display.flip() 

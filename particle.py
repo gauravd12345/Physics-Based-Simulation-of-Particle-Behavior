@@ -144,19 +144,26 @@ class Particle:
             a = math.sqrt((self.getAx() ** 2) + (self.getAy() ** 2))
             v = math.sqrt((self.getVx() ** 2) + (self.getVy() ** 2))
 
-            if(new_x > WIDTH):
-                self.addForce(180, 0, 2 * v)
-                self.x0 = (WIDTH - self.getR() * 2) * self.scale
+            if((new_x- self.getR() * 2) > WIDTH):
+                self.addForce(180, 2 * a, 2 * v)
+                self.x0 = (WIDTH - self.getR() * 2 + delta_x)
 
             elif(new_x < 0):
-                self.addForce(0, 0, 2 * v)
+                self.addForce(0, 2 * a, 2 * v)
                 self.x0 = -self.x0
-                
+            
+            elif((new_y - self.getR() * 2) > HEIGHT):
+                self.addForce(270, 2 * a, 2 * v)
+                self.y0 = (HEIGHT - self.getR() * 2 + delta_y)
+
+            elif(new_y < 0):
+                self.addForce(90, 2 * a, 2 * v)
+                self.y0 = -self.y0
+
             else:
                 self.setX(new_x)
                 self.setY(new_y)
 
-            print(delta_x / self.scale, new_x / self.scale, delta_t, self.x0)
         
 
     
