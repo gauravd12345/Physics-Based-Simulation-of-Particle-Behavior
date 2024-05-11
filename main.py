@@ -42,6 +42,7 @@ def createParticles(number, mass, v_cap, a_cap, gravity):
         r_ax = random.randint(0, a_cap)
         r_ay = random.randint(0, a_cap)
 
+        #Change this
         p = createParticle(mass, rx, ry, r_vx, r_vy, r_ax, r_ay, gravity)
         particle_list.append(p)
 
@@ -49,15 +50,17 @@ def createParticles(number, mass, v_cap, a_cap, gravity):
     return particle_list
 
 blank = createParticle(0, 0, 0, 0, 0, 0, 0, False)
-#p1 = createParticle(1, x - 100, y, 0, 0, 0, 0, False)
+#p1 = createParticle(1, x - 200, y, 10, -10, 0, 0, False)
 #p1.addForce(90, 0, 20)
 
-pList = createParticles(1, 1, 20, 0, False)
+
+pList = createParticles(100, 1, 15, 0, False)
 
 while running:
     for p in pList:
-        p.move(blank)
-
+        for j in pList:
+            p.move(j)
+       
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
